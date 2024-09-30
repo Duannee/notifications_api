@@ -50,7 +50,11 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = ["rest_framework", "channels"]
 
-LOCAL_APPS = ["notification.apps.NotificationConfig", "post.apps.PostConfig"]
+LOCAL_APPS = [
+    "notification.apps.NotificationConfig",
+    "post.apps.PostConfig",
+    "comment.apps.CommentConfig",
+]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
 
