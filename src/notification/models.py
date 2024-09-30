@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Notifications(models.Model):
+class Notification(models.Model):
 
     NOTIFICATION_TYPE_CHOICES = [
         ("comment_post", "Comment on Post"),
