@@ -53,7 +53,7 @@ THIRD_PARTY_APPS = ["rest_framework", "channels"]
 LOCAL_APPS = [
     "notification.apps.NotificationConfig",
     "post.apps.PostConfig",
-    # "comment.apps.CommentConfig",
+    "comment.apps.CommentConfig",
     # "like.apps.LikeConfig",
 ]
 
