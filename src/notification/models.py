@@ -10,6 +10,8 @@ class Notification(models.Model):
         ("reply_comment", "Reply to Comment"),
         ("like_post", "Like on Post"),
         ("like_comment", "Like on Comment"),
+        ("new_course", "New Course Available"),
+        ("course_update", "Course Updated"),
     ]
 
     user = models.ForeignKey(
@@ -20,6 +22,7 @@ class Notification(models.Model):
     )
     title = models.CharField(max_length=255)
     message = models.TextField()
+    course_id = models.IntegerField(blank=True, null=True)
     is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
