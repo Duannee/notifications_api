@@ -8,7 +8,7 @@ from notification.models import Notification
 def notify_course_events(sender, instance, created, **kwargs):
     if created:
         Notification.objects.create(
-            use=instance.owner,
+            user=instance.user,
             notification_type="new_course",
             title=f"New course: {instance.name}",
             message=f"The course {instance.name} is available",
@@ -16,7 +16,7 @@ def notify_course_events(sender, instance, created, **kwargs):
         )
     else:
         Notification.objects.create(
-            use=instance.owner,
+            user=instance.user,
             notification_type="course_update",
             title=f"Update: {instance.name}",
             message=f"The course {instance.name} was updated",

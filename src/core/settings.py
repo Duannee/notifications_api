@@ -56,6 +56,7 @@ LOCAL_APPS = [
     "comment.apps.CommentConfig",
     "like.apps.LikeConfig",
     "course.apps.CourseConfig",
+    "event.apps.EventConfig",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
