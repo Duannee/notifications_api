@@ -57,6 +57,7 @@ LOCAL_APPS = [
     "like.apps.LikeConfig",
     "course.apps.CourseConfig",
     "event.apps.EventConfig",
+    "auth.apps.AuthConfig",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
@@ -90,6 +91,19 @@ TEMPLATES = [
 ]
 ASGI_APPLICATION = "core.asgi.application"
 # WSGI_APPLICATION = "core.wsgi.application"
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+}
+
 
 CHANNEL_LAYERS = {
     "default": {
