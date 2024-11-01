@@ -3,9 +3,12 @@ from .models import Course
 from .serializers import CourseSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
 
 class CourseListCreateView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
@@ -18,6 +21,8 @@ class CourseListCreateView(ListCreateAPIView):
 
 
 class CourseRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
