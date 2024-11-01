@@ -57,7 +57,7 @@ LOCAL_APPS = [
     "like.apps.LikeConfig",
     "course.apps.CourseConfig",
     "event.apps.EventConfig",
-    "auth.apps.AuthConfig",
+    "authentication.apps.AuthenticationConfig",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
