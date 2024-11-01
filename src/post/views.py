@@ -6,9 +6,12 @@ from comment.serializers import CommentSerializer
 from notification.utils import create_notifications
 from like.models import Like
 from like.serializers import LikeSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class CreateCommentView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
@@ -26,6 +29,8 @@ class CreateCommentView(CreateAPIView):
 
 
 class CreateLikeView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
 
