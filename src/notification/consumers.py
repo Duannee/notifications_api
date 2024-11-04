@@ -9,7 +9,9 @@ class NotificationConsumer(AsyncWebsocketConsumer):
             self.group_name = f"notifications_{self.user.id}"
             await self.channel_layer.group_add(self.group_name, self.channel_name)
             await self.accept()
+            print(f"User {self.user.username} connected to WebSocket")
         else:
+            print("Unauthenticated user attempted to connect")
             await self.close()
 
     async def disconnect(self, close_code):
