@@ -6,7 +6,6 @@ class Notification(models.Model):
 
     NOTIFICATION_TYPE_CHOICES = [
         ("comment_post", "Comment on Post"),
-        ("comment_video", "Comment on Video"),
         ("reply_comment", "Reply to Comment"),
         ("like_post", "Like on Post"),
         ("like_comment", "Like on Comment"),
