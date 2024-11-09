@@ -15,7 +15,7 @@ class CourseListCreateView(ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         return Response(
-            {"message": "Course created successfully", "data": response.data},
+            {"message": "New course available", "data": response.data},
             status=status.HTTP_201_CREATED,
         )
 
@@ -26,9 +26,9 @@ class CourseRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
-    def create(self, request, *args, **kwargs):
+    def update(self, request, *args, **kwargs):
         response = super().update(request, *args, **kwargs)
         return Response(
-            {"message": "Course updated successfully", "data": response.data},
+            {"message": "Course updated", "data": response.data},
             status=status.HTTP_200_OK,
         )
