@@ -9,10 +9,7 @@ class EventSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "description",
-            "start_time",
-            "end_time",
             "organizer",
-            "participants",
             "created_at",
             "updated_at",
         ]

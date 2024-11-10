@@ -25,6 +25,7 @@ urlpatterns = [
     path("api/", include("post.urls")),
     path("api/", include("course.urls")),
     path("api/", include("authentication.urls")),
+    path("api/", include("event.urls")),
 ]
 
 websocket_urlpatterns = [path("ws/notifications/", NotificationConsumer.as_asgi())]
