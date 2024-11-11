@@ -1,3 +1,4 @@
+from django.forms import ValidationError
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .models import Course
 from .serializers import CourseSerializer
@@ -32,3 +33,13 @@ class CourseRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
             {"message": "Course updated", "data": response.data},
             status=status.HTTP_200_OK,
         )
+
+    def partial_update(self, request, *args, **kwargs):
+        invalid_fields = [
+            key for key in request.data if key not in self.serializer_class().fields
+        ]
+
+        if invalid_fields:
+            raise ValidationError({"invalid_fields": invalid_fields})
+
+        return super().partial_update(request, *args, **kwargs)
