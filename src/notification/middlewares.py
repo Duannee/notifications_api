@@ -30,11 +30,11 @@ class TokenauthMiddleware:
         query_string = parse_qs(scope["query_string"].decode())
         token_key = query_string.get("token")
 
-        print(f"Token received {token_key}")
-
         if token_key:
+            print(f"Token received {token_key[0]}")
             scope["user"] = await get_user_from_jwt_token(token_key[0])
         else:
+            print("No token provided, assigning AnonymousUser")
             scope["user"] = AnonymousUser()
 
         return await self.inner(scope, receive, send)
