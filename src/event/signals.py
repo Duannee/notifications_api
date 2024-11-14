@@ -11,7 +11,7 @@ def notify_events(sender, instance, created, **kwargs):
     notification_type = "event_created" if created else "event_updated"
     title = f"{"New event" if created else "Update event"}: {instance.title}"
     message = (
-        f"The event {instance.title} {"was created" if created else "Was updated"}"
+        f"The event {instance.title} {"was created" if created else "was updated"}"
     )
 
     for user in users:
