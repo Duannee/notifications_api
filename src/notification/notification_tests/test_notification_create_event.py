@@ -24,7 +24,7 @@ class EventNotificationTests(TestCase):
         }
 
     def test_event_create_notification(self):
-        """Test to verify if notification is create when the event is create"""
+        """Test to verify if notification is created when the event is created"""
 
         event = Event.objects.create(**self.event_data)
 
