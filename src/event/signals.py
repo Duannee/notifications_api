@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 def notify_events(sender, instance, created, **kwargs):
     users = User.objects.filter(is_superuser=False)
     notification_type = "event_created" if created else "event_updated"
-    title = f"{"New event" if created else "Update event"}: {instance.title}"
+    title = f"{"New event" if created else "Updated event"}: {instance.title}"
     message = (
         f"The event {instance.title} {"was created" if created else "was updated"}"
     )
