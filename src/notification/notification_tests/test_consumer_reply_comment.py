@@ -1,6 +1,5 @@
 from channels.testing import WebsocketCommunicator
 from django.test import TestCase
-from notification.consumers import NotificationConsumer
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import AccessToken
 from core.asgi import application
