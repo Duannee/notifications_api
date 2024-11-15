@@ -36,5 +36,5 @@ class EventNotificationTests(TestCase):
         ).first()
 
         self.assertIsNotNone(notification)
-        self.assertEqual(notification.title, f"Update event: {event.title}")
+        self.assertEqual(notification.title, f"Updated event: {event.title}")
         self.assertEqual(notification.message, f"The event {event.title} was updated")
