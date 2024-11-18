@@ -29,14 +29,15 @@ class NotificationConsumerTestCase(TestCase):
         await communicator.send_json_to(
             {
                 "notification_type": "like_post",
-                "content": "Somebody liked your post!",
+                "content": "Content test",
+                "actor": "ActorTest",
             }
         )
 
         response = await communicator.receive_json_from()
         self.assertEqual(response["notification_type"], "like_post")
         self.assertEqual(
-            response["message"], "New like on your post: Somebody liked your post!"
+            response["notification"], "ActorTest liked your post: Content test"
         )
 
         await communicator.disconnect()
