@@ -52,7 +52,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
             text_data=json.dumps(
                 {
                     "notification_type": "like_post",
-                    "notification": f"{actor} liked your post",
+                    "notification": f"{actor} liked your post: {content}",
                 }
             )
         )
