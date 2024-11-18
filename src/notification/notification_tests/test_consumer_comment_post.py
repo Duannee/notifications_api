@@ -29,7 +29,7 @@ class NotificationConsumerTestCase(TestCase):
         await communicator.send_json_to(
             {
                 "notification_type": "comment_post",
-                "content": "Content post",
+                "content": "Content test",
                 "actor": "ActorTest",
             }
         )
@@ -38,7 +38,7 @@ class NotificationConsumerTestCase(TestCase):
         self.assertEqual(response["notification_type"], "comment_post")
         self.assertEqual(
             response["notification"],
-            "ActorTest commented on your post: Content post",
+            "ActorTest commented on your post: Content test",
         )
 
         await communicator.disconnect()
