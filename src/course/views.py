@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 
-class CourseListCreateView(CreateAPIView):
+class CourseCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = Course.objects.all()
@@ -21,7 +21,7 @@ class CourseListCreateView(CreateAPIView):
         )
 
 
-class CourseRetrieveUpdateDestroyView(UpdateAPIView):
+class CourseUpdateView(UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = Course.objects.all()
