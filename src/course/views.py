@@ -1,5 +1,5 @@
 from django.forms import ValidationError
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView
 from .models import Course
 from .serializers import CourseSerializer
 from rest_framework.response import Response
@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 
-class CourseListCreateView(ListCreateAPIView):
+class CourseListCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = Course.objects.all()
@@ -21,7 +21,7 @@ class CourseListCreateView(ListCreateAPIView):
         )
 
 
-class CourseRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+class CourseRetrieveUpdateDestroyView(UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = Course.objects.all()
