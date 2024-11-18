@@ -62,7 +62,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
             text_data=json.dumps(
                 {
                     "notification_type": "reply_comment",
-                    "notification": f"{actor} replied your post: {content}",
+                    "notification": f"{actor} replied your comment: {content}",
                 }
             )
         )
