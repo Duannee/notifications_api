@@ -48,7 +48,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["rest_framework", "channels", "daphne"]
+THIRD_PARTY_APPS = ["rest_framework", "channels", "daphne", "drf_spectacular"]
 
 LOCAL_APPS = [
     "notification.apps.NotificationConfig",
@@ -98,6 +98,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 
