@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import CourseListCreateView, CourseRetrieveUpdateDestroyView
+from .views import CourseCreateView, CourseUpdateView
 
 urlpatterns = [
-    path("course/create/", CourseListCreateView.as_view(), name="course-list-create"),
+    path("course/create/", CourseCreateView.as_view(), name="course-list-create"),
     path(
         "course/<int:pk>/update/",
-        CourseRetrieveUpdateDestroyView.as_view(),
+        CourseUpdateView.as_view(),
         name="course-retrieve-update-destroy",
     ),
 ]
