@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from notification.consumers import NotificationConsumer
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,6 +27,12 @@ urlpatterns = [
     path("api/", include("course.urls")),
     path("api/", include("authentication.urls")),
     path("api/", include("event.urls")),
+    path("api/schema", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/notification/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="notification-docs",
+    ),
 ]
 
 websocket_urlpatterns = [path("ws/notifications/", NotificationConsumer.as_asgi())]
