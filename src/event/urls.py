@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import EventListCreateView, EventRetrieveUpdateDestroyView
+from .views import EventCreateView, EventUpdateView
 
 urlpatterns = [
-    path("event/create/", EventListCreateView.as_view(), name="event-list-create"),
+    path("event/create/", EventCreateView.as_view(), name="event-list-create"),
     path(
         "event/<int:pk>/update/",
-        EventRetrieveUpdateDestroyView.as_view(),
+        EventUpdateView.as_view(),
         name="event-retrieve-update-destroy",
     ),
 ]
