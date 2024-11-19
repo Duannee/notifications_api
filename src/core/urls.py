@@ -25,6 +25,7 @@ urlpatterns = [
     path("api/", include("course.urls")),
     path("api/", include("authentication.urls")),
     path("api/", include("event.urls")),
+    path("api/", include("notification.urls")),
     path("api/schema", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/notification/docs/",
