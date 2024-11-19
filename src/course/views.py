@@ -5,8 +5,10 @@ from .serializers import CourseSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.utils import extend_schema
 
 
+@extend_schema(tags=["Course"])
 class CourseCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
@@ -21,6 +23,7 @@ class CourseCreateView(CreateAPIView):
         )
 
 
+@extend_schema(tags=["Course"])
 class CourseUpdateView(UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
