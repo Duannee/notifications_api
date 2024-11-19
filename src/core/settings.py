@@ -188,6 +188,7 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "TAGS": [
         {"name": "Token", "description": "Token related operations"},
+        {"name": "WebSocket", "description": "Information about websocket connections"},
         {"name": "Course", "description": "Course management and details"},
         {"name": "Event", "description": "Event management and details"},
     ],
