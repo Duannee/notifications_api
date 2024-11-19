@@ -186,4 +186,10 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "Centralized, dynamic and secure notifications.",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    "TAGS": [
+        {"name": "Token", "description": "Token related operations"},
+        {"name": "Course", "description": "Course management and details"},
+        {"name": "Event", "description": "Event management and details"},
+    ],
+    "SORT_OPERATIONS": False,
 }
