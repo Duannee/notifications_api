@@ -32,40 +32,44 @@ A API gerencia notificações em tempo real para interações com conteúdo, al�
 - Segurança: Autenticação com JSON Web Token (JWT).
 - Performance: Banco de dados em Redis para maior eficiência no armazenamento de dados temporários.
 
+  
+
 ## Tipos de Notificações
 
 ### Interações com Conteúdo (WebSocket)
 As seguintes notificações são enviadas em tempo real via WebSocket:
 
-1. Novo comentário em um post
-Quando um usuário comenta em um post, os envolvidos recebem notificações instantaneamente.
+1. **Novo comentário em um post**
+  - Quando um usuário comenta em um post, os envolvidos recebem notificações instantaneamente.
 
-2. Novo like em um post
-Notifica o autor do post quando ele recebe um novo like.
+2. **Novo like em um post**
+  - Notifica o autor do post quando ele recebe um novo like.
 
-3. Resposta a um comentário
-Notifica o autor do comentário original.
+3. **Resposta a um comentário**
+  - Notifica o autor do comentário original.
 
-4. Novo like em um comentário
-Notifica o autor do comentário quando ele recebe um like.
+4. **Novo like em um comentário**
+  - Notifica o autor do comentário quando ele recebe um like.
 
 ### Cursos (HTTP com Signals)
 As notificações relacionadas a cursos são tratadas via HTTP, com o auxílio de Signals para desacoplar a lógica de negócio da API. As notificações incluem:
 
-5. Novo curso disponível
-Quando um novo curso é criado, os usuários interessados são notificados.
+5. **Novo curso disponível**
+  - Quando um novo curso é criado, os usuários interessados são notificados.
 
-6. Atualização de curso
-Notifica os usuários inscritos quando há mudanças no curso, como novos módulos ou aulas.
+6. **Atualização de curso**
+  - Notifica os usuários inscritos quando há mudanças no curso, como novos módulos ou aulas.
 
 ### Eventos (HTTP com Signals) 
 De forma semelhante às notificações de cursos, as notificações de eventos utilizam Signals. As notificações incluem:
 
-7. Novo evento criado
-Notifica os usuários interessados sobre a criação de um evento.
+7. **Novo evento criado**
+  - Notifica os usuários interessados sobre a criação de um evento.
 
-8. Atualização de evento
-Notifica os inscritos quando um evento sofre alterações, como mudança de data ou local.
+8. **Atualização de evento**
+  - Notifica os inscritos quando um evento sofre alterações, como mudança de data ou local.
+
+
 
 ## Tecnologias Utilizadas
 - Linguagem: Python.
@@ -75,7 +79,7 @@ Notifica os inscritos quando um evento sofre alterações, como mudança de data
 - Banco de Dados: Redis.
 - Documentação: Swagger com DRF Spectacular.
 
-#Autenticação
+# Autenticação
 A API utiliza JWT (JSON Web Token) para autenticação.
 
 ### Como funciona:
