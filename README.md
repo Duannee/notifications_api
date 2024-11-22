@@ -146,7 +146,7 @@ To connect to the WebSocket:
 The complete API documentation was created with Swagger, using DRF Spectacular. It details all endpoints, usage examples, and expected responses.
 
 Access the documentation at the link:
-- [Notification API Doc](http://127.0.0.1:8000/api/notification/docs/)
+- [Notification API Doc](https://notifications-api-b6as.onrender.com/api/notification/docs/)
 
 ---
 
