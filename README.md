@@ -29,6 +29,10 @@ Welcome to the Notification API! This API is designed to manage different types 
 
 The API manages real-time notifications for content interactions, as well as notifications related to courses and events. We use **WebSocket** for instant messages and **HTTP** for notifications based on structural changes, such as course or event updates.
 
+### Base URL
+- **Production**: [Notification API base URL](https://notifications-api-b6as.onrender.com/)
+- **Development**: `http://localhost:8000/`
+
 ### Benefits:
 - **Real-time notifications**: Provides a better user experience with instant updates.
 - **Decoupled architecture**: Signals manage notifications related to courses and events.
@@ -108,6 +112,12 @@ The API uses **JWT (JSON Web Token)** for authentication.
 ---
 
 # Available Routes 
+
+All endpoints are relative to the base URL:
+- **Production**: [Notification API base URL](https://notifications-api-b6as.onrender.com/)
+- **Development**: `http://localhost:8000/`
+
+  
 ### Route Tags 
 Routes are organized into tags for easier navigation:
 
@@ -124,12 +134,18 @@ Both resources (courses and events) have three main routes:
 3. POST: Create a new course/event.
 
 ### WebSocket Routes
+
+### Real-Time Notifications
+To connect to the WebSocket for real-time notifications:
+- **Production**: `wss://notifications-api-b6as.onrender.com/ws/notifications/`
+- **Development**: `http://localhost:8000/`
+
 - GET /api/ws/notification
   - Explains how to use real-time notifications via WebSocket.
 To connect to the WebSocket:
 1. Use the endpoint:
    ```perl
-   ws://localhost:8000/ws/notifications/
+   wss://notifications-api-b6as.onrender.com/ws/notifications/
    ```
 2. Send the JWT token in the connection header.
 
