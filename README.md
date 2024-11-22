@@ -105,6 +105,7 @@ The API uses **JWT (JSON Web Token)** for authentication.
    ```bash
    Authorization: Bearer <your token>
 
+---
 
 # Available Routes 
 ### Route Tags 
@@ -132,16 +133,22 @@ To connect to the WebSocket:
    ```
 2. Send the JWT token in the connection header.
 
+---
+
 # Testing
 - The API is fully tested with unit tests and integration tests using:
   - Unittest: To validate individual functionalities.
   - TestCase: To simulate complete scenarios.
+
+---
 
 # Documentation
 The complete API documentation was created with Swagger, using DRF Spectacular. It details all endpoints, usage examples, and expected responses.
 
 Access the documentation at the link:
 - [Notification API Doc](http://127.0.0.1:8000/api/notification/docs/)
+
+---
 
 # How to Contribute
 1. Fork the repository.
@@ -150,6 +157,8 @@ Access the documentation at the link:
 git checkout -b you-branch-name
 ```
 3. Submit a pull request detailing your contributions.
+
+---
 
 # Contact
 - Developer: **Duanne Moraes**
