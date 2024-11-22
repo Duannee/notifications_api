@@ -1,143 +1,159 @@
-# Notification API
+# **Notification API**
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/Duannee/notifications_api/blob/main/LICENSE)
 
-Bem-vindo à API de Notificações! Esta API foi projetada para gerenciar notificações de diferentes tipos, utilizando conexões WebSocket para notificações em tempo real e requisições HTTP para notificações relacionadas a eventos e cursos. Com arquitetura modular e uma abordagem bem testada, ela garante desempenho e organização.
+Welcome to the Notification API! This API is designed to manage different types of notifications using WebSocket connections for real-time notifications and HTTP requests for notifications related to events and courses. With a modular architecture and a well-tested approach, it ensures performance and organization.
+
+---
 
 ## **Index**
 
-1. [Visão Geral](#visão-geral)  
-2. [Tipos de Notificações](#tipos-de-notificações)  
-   - [Interações com Conteúdo (WebSocket)](#interações-com-conteúdo-websocket)  
-   - [Cursos (HTTP com Signals)](#cursos-http-com-signals)  
-   - [Eventos (HTTP com Signals)](#eventos-http-com-signals)  
-3. [Tecnologias Utilizadas](#tecnologias-utilizadas)  
-4. [Autenticação](#autenticação)  
-5. [Rotas Disponíveis](#rotas-disponíveis)  
-   - [Tags das Rotas](#tags-das-rotas)  
-   - [Rotas de Cursos e Eventos](#rotas-de-cursos-e-eventos)  
-   - [Rotas de WebSocket](#rotas-de-websocket)  
-6. [Testes](#testes)  
-7. [Documentação](#documentação)  
-8. [Como Contribuir](#como-contribuir)  
-9. [Contato](#contato)
+1. [Overview](#overview)  
+2. [Notification Types](#notification-types)  
+   - [Content Interactions (WebSocket)](#content-interactions-websocket)  
+   - [Courses (HTTP with Signals)](#courses-http-with-signals)  
+   - [Events (HTTP with Signals)](#events-http-with-signals)  
+3. [Technologies Used](#technologies-used)  
+4. [Authentication](#authentication)  
+5. [Available Routes](#available-routes)  
+   - [Route Tags](#route-tags)  
+   - [Course and Event Routes](#course-and-event-routes)  
+   - [WebSocket Routes](#websocket-routes)  
+6. [Testing](#testing)  
+7. [Documentation](#documentation)  
+8. [How to Contribute](#how-to-contribute)  
+9. [Contact](#contact)  
+
+---
+
+## **Overview**
+
+The API manages real-time notifications for content interactions, as well as notifications related to courses and events. We use **WebSocket** for instant messages and **HTTP** for notifications based on structural changes, such as course or event updates.
+
+### Benefits:
+- **Real-time notifications**: Provides a better user experience with instant updates.
+- **Decoupled architecture**: Signals manage notifications related to courses and events.
+- **Security**: Authentication with **JSON Web Token (JWT)**.
+- **Performance**: **Redis database** for efficient temporary data storage.
+
+---
+
+## **Notification Types**
+
+### **Content Interactions (WebSocket)**
+
+The following notifications are sent in real-time via **WebSocket**:
+
+1. **New comment on a post**  
+   - Notifies participants when a new comment is added to a post.
+
+2. **New like on a post**  
+   - Notifies the post author when it receives a like.
+
+3. **Reply to a comment**  
+   - Notifies the original comment's author when someone replies.
+
+4. **New like on a comment**  
+   - Notifies the comment's author when it receives a like.
+
+---
+
+### **Courses (HTTP with Signals)**
+
+Course-related notifications are handled via **HTTP**, using **Signals** to decouple the business logic from the API. Notifications include:
+
+5. **New course available**  
+   - Notifies users when a new course is created.
+
+6. **Course update**  
+   - Notifies enrolled users about changes, such as new modules or lessons.
+
+---
+
+### **Events (HTTP with Signals)**
+
+Event notifications also use **Signals**, similar to course notifications. Notifications include:
+
+7. **New event created**  
+   - Notifies interested users about a new event.
+
+8. **Event update**  
+   - Notifies registered users when an event changes, such as date or location.
+
+---
+
+## **Technologies Used**
+
+- **Language**: Python.  
+- **Frameworks**: Django, Django Rest Framework (DRF).  
+- **WebSocket**: Django Channels.  
+- **Authentication**: JWT via Simple JWT.  
+- **Database**: Redis.  
+- **Documentation**: Swagger with DRF Spectacular.  
+
+---
+
+## **Authentication**
+
+The API uses **JWT (JSON Web Token)** for authentication.
+
+### How it works:
+1. Login via `/api/token/` to get:
+   - **Access Token**: Valid for 30 minutes.
+   - **Refresh Token**: Valid for 7 days.
+
+2. Use the **Access Token** in the request headers:  
+   ```bash
+   Authorization: Bearer <your token>
 
 
-## Visão Geral
+# Available Routes 
+### Route Tags 
+Routes are organized into tags for easier navigation:
 
-A API gerencia notificações em tempo real para interações com conteúdo, além de notificações relacionadas a cursos e eventos. Utilizamos WebSocket para mensagens instantâneas e HTTP para notificações baseadas em mudanças estruturais, como atualizações de cursos ou eventos.
+- Token: Operations related to authentication.
+- WebSocket: Explains how to connect via WebSocket.
+- Course: Management and notifications for courses (HTTP).
+- Event: Management and notifications for events (HTTP).
 
-### Benefícios:
-- Notificações em tempo real: Melhor experiência para o usuário com atualizações imediatas.
-- Arquitetura desacoplada: Signals organizam as notificações relacionadas a cursos e eventos.
-- Segurança: Autenticação com JSON Web Token (JWT).
-- Performance: Banco de dados em Redis para maior eficiência no armazenamento de dados temporários.
+### Course and Event Routes 
+Both resources (courses and events) have three main routes:
 
-  
+1. PATCH: Partially update a course/event.
+2. PUT: Completely update a course/event.
+3. POST: Create a new course/event.
 
-## Tipos de Notificações
-
-### Interações com Conteúdo (WebSocket)
-As seguintes notificações são enviadas em tempo real via WebSocket:
-
-1. **Novo comentário em um post**
-  - Quando um usuário comenta em um post, os envolvidos recebem notificações instantaneamente.
-
-2. **Novo like em um post**
-  - Notifica o autor do post quando ele recebe um novo like.
-
-3. **Resposta a um comentário**
-  - Notifica o autor do comentário original.
-
-4. **Novo like em um comentário**
-  - Notifica o autor do comentário quando ele recebe um like.
-
-### Cursos (HTTP com Signals)
-As notificações relacionadas a cursos são tratadas via HTTP, com o auxílio de Signals para desacoplar a lógica de negócio da API. As notificações incluem:
-
-5. **Novo curso disponível**
-  - Quando um novo curso é criado, os usuários interessados são notificados.
-
-6. **Atualização de curso**
-  - Notifica os usuários inscritos quando há mudanças no curso, como novos módulos ou aulas.
-
-### Eventos (HTTP com Signals) 
-De forma semelhante às notificações de cursos, as notificações de eventos utilizam Signals. As notificações incluem:
-
-7. **Novo evento criado**
-  - Notifica os usuários interessados sobre a criação de um evento.
-
-8. **Atualização de evento**
-  - Notifica os inscritos quando um evento sofre alterações, como mudança de data ou local.
-
-
-
-## Tecnologias Utilizadas
-- Linguagem: Python.
-- Frameworks: Django, Django Rest Framework (DRF).
-- WebSocket: Django Channels.
-- Autenticação: JWT via Simple JWT.
-- Banco de Dados: Redis.
-- Documentação: Swagger com DRF Spectacular.
-
-# Autenticação
-A API utiliza JWT (JSON Web Token) para autenticação.
-
-### Como funciona:
-1. Faça login via /api/token/ para obter:
-- Access Token: Válido por 30 minutos.
-- Refresh Token: Válido por 7 dias.
-2. Use o Access Token no cabeçalho das requisições:
-  ```makefile
-  Authorization Bearer <your token>
-  ```
-
-# Rotas Disponíveis 
-### Tags das Rotas 
-As rotas estão organizadas por tags para facilitar a navegação:
-
-- Token: Operações relacionadas à autenticação.
-- WebSocket: Explicação de como conectar via WebSocket.
-- Course: Gerenciamento e notificações de cursos (HTTP).
-- Event: Gerenciamento e notificações de eventos (HTTP).
-
-### Rotas de Cursos e Eventos 
-Ambos os recursos (cursos e eventos) possuem três rotas principais:
-
-1. PATCH: Atualizar parcialmente um curso/evento.
-2. PUT: Atualizar completamente um curso/evento.
-3. POST: Criar um novo curso/evento.
-
-### Rotas de WebSocket
+### WebSocket Routes
 - GET /api/ws/notification
-  Explica como utilizar as notificações em tempo real via WebSocket.
-Para conectar-se ao WebSocket
-1. User o endpoint:
+  - Explains how to use real-time notifications via WebSocket.
+To connect to the WebSocket:
+1. Use the endpoint:
    ```perl
    ws://localhost:8000/ws/notifications/
    ```
-2. Envie o token JWT no cabeçalho da conexão
+2. Send the JWT token in the connection header.
 
-# Testes
-- A API foi totalmente testada com testes unitários e testes de integração, utilizando:
- - Unittest: Para validar funcionalidades individuais.
- - TestCase: Para simular cenários completos.
+# Testing
+- The API is fully tested with unit tests and integration tests using:
+  - Unittest: To validate individual functionalities.
+  - TestCase: To simulate complete scenarios.
 
-# Documentação
-A documentação completa da API foi criada com Swagger, utilizando o DRF Spectacular. Ela detalha todos os endpoints, exemplos de uso e resposta esperada.
-Acesse a documentação através do link:
-[Notification API Doc](http://127.0.0.1:8000/api/notification/docs/)
+# Documentation
+The complete API documentation was created with Swagger, using DRF Spectacular. It details all endpoints, usage examples, and expected responses.
 
-# Como contribuir
-1. Faça o fork do repositório
-2. Crie uma branch para suas alterações:
+Access the documentation at the link:
+- [Notification API Doc](http://127.0.0.1:8000/api/notification/docs/)
+
+# How to Contribute
+1. Fork the repository.
+2. Create a branch for your changes:
 ```bash
 git checkout -b you-branch-name
 ```
-3. Envie um pull request detalhando suas contribuições
+3. Submit a pull request detailing your contributions.
 
-# Contato
-- Desenvolvedor: **Duanne Moraes**
-- E-mail: duannemoraes.dev@gmail.com
+# Contact
+- Developer: **Duanne Moraes**
+- Email: duannemoraes.dev@gmail.com
 - Linkedin: [Duanne Moraes Linkedin](https://www.linkedin.com/in/duanne-moraes-7a0376278/)
 
 
