@@ -19,9 +19,16 @@ from django.contrib import admin
 from django.urls import path, include
 from notification.consumers import NotificationConsumer
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from django.http import HttpResponse
+
+
+def home(request):
+    return HttpResponse("Welcome to the Notification API!")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", home),
     path("api/", include("course.urls")),
     path("api/", include("authentication.urls")),
     path("api/", include("event.urls")),
