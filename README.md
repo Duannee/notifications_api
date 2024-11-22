@@ -35,9 +35,10 @@ The API manages real-time notifications for content interactions, as well as not
 
 ### Benefits:
 - **Real-time notifications**: Provides a better user experience with instant updates.
-- **Decoupled architecture**: Signals manage notifications related to courses and events.
+- **Decoupled architecture**: **Signals** manage notifications related to courses and events.
 - **Security**: Authentication with **JSON Web Token (JWT)**.
 - **Performance**: **Redis database** for efficient temporary data storage.
+- **Reliable database**: **PostgreSQL** for robust and scalable data management.
 
 ---
 
@@ -48,7 +49,7 @@ The API manages real-time notifications for content interactions, as well as not
 The following notifications are sent in real-time via **WebSocket**:
 
 1. **New comment on a post**  
-   - Notifies participants when a new comment is added to a post.
+   - Notifies the post author when a new comment is added to his post.
 
 2. **New like on a post**  
    - Notifies the post author when it receives a like.
@@ -69,7 +70,7 @@ Course-related notifications are handled via **HTTP**, using **Signals** to deco
    - Notifies users when a new course is created.
 
 6. **Course update**  
-   - Notifies enrolled users about changes, such as new modules or lessons.
+   - Notifies registered users about course changes.
 
 ---
 
@@ -81,7 +82,7 @@ Event notifications also use **Signals**, similar to course notifications. Notif
    - Notifies interested users about a new event.
 
 8. **Event update**  
-   - Notifies registered users when an event changes, such as date or location.
+   - Notifies registered users when an event changes.
 
 ---
 
@@ -91,7 +92,7 @@ Event notifications also use **Signals**, similar to course notifications. Notif
 - **Frameworks**: Django, Django Rest Framework (DRF).  
 - **WebSocket**: Django Channels.  
 - **Authentication**: JWT via Simple JWT.  
-- **Database**: Redis.  
+- **Database**: PostgreSQL and Redis.  
 - **Documentation**: Swagger with DRF Spectacular.  
 
 ---
@@ -138,9 +139,9 @@ Both resources (courses and events) have three main routes:
 ### Real-Time Notifications
 To connect to the WebSocket for real-time notifications:
 - **Production**: `wss://notifications-api-b6as.onrender.com/ws/notifications/`
-- **Development**: `http://localhost:8000/`
+- **Development**: `ws://localhost:8000/ws/notifications/`
 
-- GET /api/ws/notification
+- GET /api/ws/notifications/
   - Explains how to use real-time notifications via WebSocket.
 To connect to the WebSocket:
 1. Use the endpoint:
